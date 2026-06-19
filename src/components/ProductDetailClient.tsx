@@ -3,14 +3,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
 import {
   SIZE_OPTIONS,
-  FAQ_ITEMS,
   PRODUCT_TESTIMONIALS,
   CERTIFICATIONS,
 } from "@/lib/content";
 import { useCart } from "@/lib/cart-context";
+import FaqAccordion from "@/components/FaqAccordion";
+import FadeIn from "@/components/FadeIn";
+import AnimatedButton from "@/components/AnimatedButton";
 
 const SIZES = ["25g", "40g", "65g"] as const;
 type Size = (typeof SIZES)[number];
@@ -19,7 +20,6 @@ type PurchaseType = "one-time" | "subscribe";
 export default function ProductDetailClient() {
   const [size, setSize] = useState<Size>("25g");
   const [purchaseType, setPurchaseType] = useState<PurchaseType>("one-time");
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const { addItem } = useCart();
 
   const sizeData = SIZE_OPTIONS.find((s) => s.size === size)!;
@@ -188,9 +188,13 @@ export default function ProductDetailClient() {
               </div>
             </div>
 
-            <button onClick={handleAddToCart} className="pm-btn pm-btn-gold w-full text-base py-4 mb-4">
+            <AnimatedButton
+              onClick={handleAddToCart}
+              variant="gold"
+              className="w-full text-base py-4 mb-4"
+            >
               ADD TO CART — {priceBlock.price}
-            </button>
+            </AnimatedButton>
 
             <div className="grid grid-cols-3 gap-3 text-center text-xs text-pm-gray-text border-t border-pm-fog pt-5">
               <div>Free Shipping (Over 90€)</div>
@@ -657,19 +661,23 @@ export default function ProductDetailClient() {
       {/* TESTIMONIALS CAROUSEL (static grid) */}
       <section className="pm-section bg-pm-white">
         <div className="pm-container">
-          <h2 className="text-2xl md:text-3xl font-extrabold mb-2">
-            10,000+ People Have Made The Switch.
-          </h2>
+          <FadeIn>
+            <h2 className="text-2xl md:text-3xl font-extrabold mb-2">
+              10,000+ People Have Made The Switch.
+            </h2>
+          </FadeIn>
           <div className="grid sm:grid-cols-2 gap-6 mt-8">
             {PRODUCT_TESTIMONIALS.map((t, i) => (
-              <div key={i} className="border border-pm-fog rounded-lg p-5 bg-pm-cream">
-                <p className="text-sm text-pm-gray-text leading-relaxed mb-3">
-                  &quot;{t.quote}&quot;
-                </p>
-                <p className="text-sm font-semibold">
-                  - {t.name}, {t.meta}
-                </p>
-              </div>
+              <FadeIn key={i} delay={i * 0.05}>
+                <div className="border border-pm-fog rounded-lg p-5 bg-pm-cream h-full">
+                  <p className="text-sm text-pm-gray-text leading-relaxed mb-3">
+                    &quot;{t.quote}&quot;
+                  </p>
+                  <p className="text-sm font-semibold">
+                    - {t.name}, {t.meta}
+                  </p>
+                </div>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -766,30 +774,7 @@ export default function ProductDetailClient() {
           <h2 className="text-2xl md:text-3xl font-extrabold mb-8">
             Frequently Asked Questions
           </h2>
-          <div className="divide-y divide-pm-fog border-t border-b border-pm-fog">
-            {FAQ_ITEMS.map((item, i) => (
-              <div key={item.q}>
-                <button
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full flex items-center justify-between py-4 text-left font-semibold"
-                  aria-expanded={openFaq === i}
-                >
-                  {item.q}
-                  <ChevronDown
-                    size={18}
-                    className={`transition-transform shrink-0 ml-3 ${
-                      openFaq === i ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-                {openFaq === i && (
-                  <p className="text-sm text-pm-gray-text pb-4 leading-relaxed">
-                    {item.a}
-                  </p>
-                )}
-              </div>
-            ))}
-          </div>
+          <FaqAccordion />
         </div>
       </section>
 

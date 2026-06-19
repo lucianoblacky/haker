@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
+import StickyHeader from "@/components/StickyHeader";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/lib/cart-context";
 
@@ -38,7 +38,7 @@ export default function RootLayout({
     <html lang="en" className={`${openSans.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <CartProvider>
-          <Header />
+          <StickyHeader />
           <main className="flex-1">{children}</main>
           <Footer />
         </CartProvider>

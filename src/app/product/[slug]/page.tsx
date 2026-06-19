@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BEST_SELLERS } from "@/lib/content";
+import { himalayanShilajitResin } from "@/lib/products/himalayan-shilajit-resin";
+import { altaiShilajit } from "@/lib/products/altai-shilajit";
+import ShilajitProductPage from "@/components/ShilajitProductPage";
 import ProductDetailClient from "@/components/ProductDetailClient";
 
 export function generateStaticParams() {
@@ -30,8 +33,16 @@ export default async function ProductPage({
   const product = BEST_SELLERS.find((p) => p.slug === slug);
   if (!product) notFound();
 
-  // The flagship product (Himalayan Shilajit Resin) gets the full
-  // long-form template replicated from the source site. Other
-  // best-seller products reuse the same proven template/structure.
+  // Each product has its own real, extracted page content. Himalayan
+  // Shilajit Resin and Altai Shilajit are fully wired to the new
+  // structured template. Capsules, Gummies, and Powder are pending
+  // (still served by the legacy template) and will be wired next.
+  if (slug === "peakmodo-himalayan-shilajit-resin") {
+    return <ShilajitProductPage data={himalayanShilajitResin} />;
+  }
+  if (slug === "peakmodo-altai-shilajit") {
+    return <ShilajitProductPage data={altaiShilajit} />;
+  }
+
   return <ProductDetailClient />;
 }

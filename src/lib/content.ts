@@ -4,8 +4,8 @@
 //   Mountaindrop -> PeakModo
 //   Himalayan Shilajit -> PeakModo Himalayan Shilajit Resin
 //   Prime -> PeakModo Capsules
-//   Genius -> PeakModo Gummies
-//   Flourish -> PeakModo Powder
+//   Flourish -> PeakModo Gummies
+//   Genius -> PeakModo Powder
 
 export const BRAND = {
   name: "PeakModo",
@@ -51,9 +51,9 @@ export const BEST_SELLERS: Product[] = [
     cta: "SHOP CAPSULES",
   },
   {
-    slug: "peakmodo-powder",
-    name: "PeakModo Powder",
-    shortName: "Powder",
+    slug: "peakmodo-gummies",
+    name: "PeakModo Gummies",
+    shortName: "Gummies",
     price: "€105,00",
     priceValue: 105.0,
     image: "/images/MD_Flourish_Jar_front_shadow_white-scaledf869.png",
@@ -71,7 +71,7 @@ export const BEST_SELLERS: Product[] = [
         body: "Customers report better energy, clarity, and emotional stability",
       },
     ],
-    cta: "SHOP POWDER",
+    cta: "SHOP GUMMIES",
   },
   {
     slug: "peakmodo-himalayan-shilajit-resin",
@@ -121,9 +121,9 @@ export const BEST_SELLERS: Product[] = [
     cta: "SHOP ALTAI SHILAJIT",
   },
   {
-    slug: "peakmodo-gummies",
-    name: "PeakModo Gummies",
-    shortName: "Gummies",
+    slug: "peakmodo-powder",
+    name: "PeakModo Powder",
+    shortName: "Powder",
     price: "€115,00",
     priceValue: 115.0,
     rating: "4.8 (985 Reviews)",
@@ -142,7 +142,7 @@ export const BEST_SELLERS: Product[] = [
         body: "Customers report clearer thinking and better concentration",
       },
     ],
-    cta: "SHOP GUMMIES",
+    cta: "SHOP POWDER",
   },
 ];
 
@@ -169,7 +169,7 @@ export const HOME_TESTIMONIALS = [
     name: "Nataša Arčnik Pavlin",
     date: "September 27, 2025",
     title: "Since I was in my Mena Period",
-    body: "Since I was in my Mena Period, I needed a supplement to help me feel better. I tried PeakModo Powder. I was skeptical at first, but after 5 days of taking it, I started to see a difference. It was amazing. My energy went up, I'm having regular bowel movements again, and my libido went up, which affected my marriage with my husband. Thank you so much!",
+    body: "Since I was in my Mena Period, I needed a supplement to help me feel better. I tried PeakModo Gummies. I was skeptical at first, but after 5 days of taking it, I started to see a difference. It was amazing. My energy went up, I'm having regular bowel movements again, and my libido went up, which affected my marriage with my husband. Thank you so much!",
   },
   {
     name: "Big Mo",

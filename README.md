@@ -1,8 +1,9 @@
 # PeakModo
 
 Premium Shilajit e-commerce site, rebuilt with Next.js 15, React, TypeScript,
-and Tailwind CSS. Structure, layout, copy, and conversion flow are replicated
-from the original site, with branding swapped to **PeakModo**.
+Tailwind CSS, and Framer Motion. Structure, layout, copy, images, and
+conversion flow are replicated from the original MountainDrop site, with
+branding swapped to **PeakModo**.
 
 ## Pages
 
@@ -12,8 +13,24 @@ from the original site, with branding swapped to **PeakModo**.
 - `/certificates` — Lab certifications
 - `/faq` — FAQ
 - `/contact` — Contact form
-- `/cart`, `/checkout/success` — Cart + checkout flow
-- `/about`, `/privacy-policy`, `/terms-conditions` — Supporting pages
+- `/cart`, `/checkout/success` — Cart + checkout flow (required for purchases to work)
+- `/about`, `/privacy-policy`, `/terms-conditions` — Footer/legal pages (kept so footer links aren't broken)
+
+Removed: Rewards, Distributors, Blog, Login, Register.
+
+## Reusable components
+
+- `HeroVideoBackground` — full-bleed hero background; tries `/videos/hero.mp4`
+  first, falls back automatically to `/images/...jpg` if no video is present.
+- `TrustpilotBar` — the rating / review count / jars-delivered line in the hero.
+- `CertificationMarquee` — infinite-scrolling trust badge ticker.
+- `ProductCarousel` — swipeable best-seller product carousel (Embla).
+- `ReviewsCarousel` — swipeable, autoplaying testimonial carousel (Embla).
+- `FaqAccordion` — animated accordion (Framer Motion height animation), shared
+  between the FAQ page and the product page.
+- `StickyHeader` / `MobileMenu` — scroll-aware sticky nav with animated mobile menu.
+- `FadeIn` — scroll-triggered fade/slide-in wrapper used throughout for entrance animation.
+- `AnimatedButton` — button with consistent hover/press micro-animation.
 
 ## Getting started
 
@@ -25,11 +42,22 @@ npm run dev
 
 Open http://localhost:3000.
 
+## Hero video
+
+The hero is built to support a video background exactly like the original
+site's cinematic hero treatment:
+
+1. Drop a file at `public/videos/hero.mp4`.
+2. `HeroVideoBackground` will detect it automatically (via a `HEAD` request)
+   and fade in the video over the fallback image — no code changes needed.
+3. If no file is present, the hero silently behaves as an image-only hero.
+
 ## Images
 
-All images are placeholders pointing to `/public/images/*.jpg`. Replace these
-files with real product photography — keep the same filenames or update the
-references in `src/lib/content.ts` and the page components.
+All images are the original site's real assets, copied with their original
+filenames into `/public/images/`. Nothing has been replaced with placeholders.
+Swap a file in place (same filename) to update it, or change the path in
+`src/lib/content.ts` / the relevant component.
 
 ## Payments
 
@@ -65,4 +93,11 @@ This repo includes `netlify.toml` configured for the official Next.js runtime
 
 ## Content
 
-All page text content and structure is centralized in `src/lib/content.ts`.
+All page text content and structure is centralized in `src/lib/content.ts`,
+extracted verbatim from the original site with only brand/product names swapped:
+
+- Mountaindrop → PeakModo
+- Himalayan Shilajit → PeakModo Himalayan Shilajit Resin
+- Prime → PeakModo Capsules
+- Flourish → PeakModo Gummies
+- Genius → PeakModo Powder
